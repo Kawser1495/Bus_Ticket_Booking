@@ -1,0 +1,46 @@
+﻿@model busticketbooking.Models.ScheduleViewModel
+
+<div class="container mt-5">
+    <h2>Add New Schedule</h2>
+    <form asp-action="CreateSchedule" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="BusID" class="form-label">Bus</label>
+            <select asp-for="BusID" class="form-control">
+                <option value="">Select Bus</option>
+                @foreach (var bus in ViewBag.Buses)
+                {
+                    <option value="@bus.BusID">@bus.BusNumber</option>
+                }
+            </select>
+            <span asp-validation-for="BusID" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="RouteID" class="form-label">Route</label>
+            <select asp-for="RouteID" class="form-control">
+                <option value="">Select Route</option>
+                @foreach (var route in ViewBag.Routes)
+                {
+                    <option value="@route.RouteID">@route.Source - @route.Destination</option>
+                }
+            </select>
+            <span asp-validation-for="RouteID" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="DepartureTime" class="form-label"></label>
+            <input asp-for="DepartureTime" type="datetime-local" class="form-control" />
+            <span asp-validation-for="DepartureTime" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="ArrivalTime" class="form-label"></label>
+            <input asp-for="ArrivalTime" type="datetime-local" class="form-control" />
+            <span asp-validation-for="ArrivalTime" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Date" class="form-label"></label>
+            <input asp-for="Date" type="date" class="form-control" />
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Schedule</button>
+    </form>
+</div>

@@ -1,0 +1,19 @@
+﻿@model busticketbooking.Models.ErrorViewModel
+
+<div class="container mt-5">
+    <h1 class="text-danger">Error</h1>
+    <p class="text-muted">@Model.ErrorMessage</p>
+
+    @if (Model.ShowRequestId)
+    {
+        <p class="text-muted">Request ID: @Model.RequestId</p>
+    }
+
+    @if (Model.StatusCode.HasValue)
+    {
+        <p class="text-muted">Status Code: @Model.StatusCode</p>
+    }
+
+    <a href="/" class="btn btn-primary">Go to Home</a>
+</div>
+

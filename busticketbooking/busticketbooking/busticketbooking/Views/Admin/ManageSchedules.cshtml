@@ -1,0 +1,36 @@
+﻿@model IEnumerable<busticketbooking.Models.Schedule>
+
+<div class="container mt-5">
+    <h2>Manage Schedules</h2>
+    <a asp-action="CreateSchedule" class="btn btn-success mb-3">Add New Schedule</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Bus</th>
+                <th>Route</th>
+                <th>Departure Time</th>
+                <th>Arrival Time</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var schedule in Model)
+            {
+                <tr>
+                    <td>@schedule.Bus.BusNumber</td>
+                    <td>@schedule.Route.Source - @schedule.Route.Destination</td>
+                    <td>@schedule.DepartureTime</td>
+                    <td>@schedule.ArrivalTime</td>
+                    <td>@schedule.Date.ToShortDateString()</td>
+                    <td>
+                        <a asp-action="EditSchedule" asp-route-id="@schedule.ScheduleID" class="btn btn-warning">Edit</a>
+                        <form asp-action="DeleteSchedule" asp-route-id="@schedule.ScheduleID" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

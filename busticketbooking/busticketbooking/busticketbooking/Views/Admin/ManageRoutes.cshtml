@@ -1,0 +1,37 @@
+﻿@model IEnumerable<busticketbooking.Models.BusRoute>
+
+<div class="container mt-5">
+    <h2>Manage Routes</h2>
+    <a asp-action="CreateRoute" class="btn btn-primary mb-3">Add New Route</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Route ID</th>
+                <th>Source</th>
+                <th>Destination</th>
+                <th>Duration</th>
+                <th>Distance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var route in Model)
+            {
+                <tr>
+                    <td>@route.RouteID</td>
+                    <td>@route.Source</td>
+                    <td>@route.Destination</td>
+                    <td>@route.Duration</td>
+                    <td>@route.Distance</td>
+                    <td>
+                        <a asp-action="EditRoute" asp-route-id="@route.RouteID" class="btn btn-warning btn-sm">Edit</a>
+                        <form asp-action="DeleteRoute" asp-route-id="@route.RouteID" method="post" class="d-inline">
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

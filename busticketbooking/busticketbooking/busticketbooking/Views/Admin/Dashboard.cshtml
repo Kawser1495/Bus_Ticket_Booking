@@ -1,0 +1,93 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<div class="container mt-5">
+    <h1>Admin Dashboard</h1>
+    <hr />
+
+    <div class="row">
+        <!-- Manage Routes -->
+        <div class="col-md-4">
+            <h3>Manage Routes</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a asp-controller="Admin" asp-action="ManageRoutes" class="btn btn-primary">Manage Routes</a>
+                </li>
+                <li class="list-group-item">
+                    <a asp-controller="Admin" asp-action="CreateRoute" class="btn btn-success">Add New Route</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Manage Buses -->
+        <div class="col-md-4">
+            <h3>Manage Buses</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a asp-controller="Admin" asp-action="ManageBuses" class="btn btn-primary">Manage Buses</a>
+                </li>
+                <li class="list-group-item">
+                    <a asp-controller="Admin" asp-action="CreateBus" class="btn btn-success">Add New Bus</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Manage Scheduling -->
+        <div class="col-md-4">
+            <h3>Manage Scheduling</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a asp-controller="Admin" asp-action="ManageSchedules" class="btn btn-primary">Manage Schedules</a>
+                </li>
+                <li class="list-group-item">
+                    <a asp-controller="Admin" asp-action="CreateSchedule" class="btn btn-success">Add New Schedule</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+   
+
+    <div class="row mt-4">
+        <!-- Manage Bookings -->
+        <div class="col-md-4">
+            <h3>Manage Bookings</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a asp-controller="Admin" asp-action="ManageBookings" class="btn btn-primary">Manage Bookings</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Monitor Transactions -->
+        <div class="col-md-4">
+            <h3>Monitor Transactions</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a asp-controller="Admin" asp-action="MonitorTransactions" class="btn btn-primary">Monitor Transactions</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Generate Reports -->
+        <div class="col-md-4">
+            <h3>Generate Reports</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a asp-controller="Admin" asp-action="GenerateReports" class="btn btn-primary">Generate Reports</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <!-- Admin Profile -->
+        <div class="col-md-4">
+            <h3>Admin Profile</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a asp-controller="Admin" asp-action="Profile" class="btn btn-primary">View Profile</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

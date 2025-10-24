@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+<div class="container mt-5">
+    <div class="text-center">
+        <h1 class="display-4">Welcome to Bus Ticket Booking</h1>
+        <p class="lead">Book your tickets, manage your bookings, and enjoy a seamless travel experience.</p>
+        <a asp-controller="Passenger" asp-action="SearchBuses" class="btn btn-primary btn-lg">Search Buses</a>
+        <a asp-controller="Passenger" asp-action="Register" class="btn btn-secondary btn-lg">Register</a>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Search Buses</h5>
+                    <p class="card-text">Find buses by route and date.</p>
+                    <a asp-controller="Passenger" asp-action="SearchBuses" class="btn btn-primary">Search</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Manage Bookings</h5>
+                    <p class="card-text">View, download, or cancel your tickets.</p>
+                    <a asp-controller="Passenger" asp-action="ViewTickets" class="btn btn-primary">View Tickets</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Admin Access</h5>
+                    <p class="card-text">Manage routes, schedules, and bookings.</p>
+                    <a asp-controller="Admin" asp-action="ManageRoutes" class="btn btn-primary">Admin Panel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

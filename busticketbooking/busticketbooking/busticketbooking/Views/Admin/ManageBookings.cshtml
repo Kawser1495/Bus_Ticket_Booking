@@ -1,0 +1,43 @@
+﻿@model IEnumerable<busticketbooking.Models.Booking>
+
+<div class="container mt-5">
+    <h2>Manage Bookings</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Passenger</th>
+                <th>Route</th>
+                <th>Travel Date</th>
+                <th>Total Fare</th>
+                <th>Status</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in Model)
+            {
+                <tr>
+                    <td>@booking.BookingID</td>
+                    <td>@(booking.Passenger != null ? booking.Passenger.Name : "N/A")</td>
+                    <td>
+                        @(booking.Schedule != null && booking.Schedule.Route != null
+                            ? $"{booking.Schedule.Route.Source} to {booking.Schedule.Route.Destination}"
+                            : "N/A")
+                    </td>
+                    <td>@(booking.Schedule != null ? booking.Schedule.Date.ToShortDateString() : "N/A")</td>
+                    <td>@booking.TotalFare</td>
+                    <td>@booking.Status</td>
+                    <td>
+                        @if (booking.Status == "Booked")
+                        {
+                            <form asp-action="ProcessRefund" asp-route-bookingId="@booking.BookingID" method="post" class="d-inline">
+                                <button type="submit" class="btn btn-danger btn-sm">Cancel & Refund</button>
+                            </form>
+                        }
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

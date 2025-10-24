@@ -1,0 +1,23 @@
+﻿@model busticketbooking.Models.CreateSeatViewModel
+
+<div class="container mt-5">
+    <h2>Create Seats</h2>
+    <form asp-action="CreateSeat" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="BusID" />
+        <div class="mb-3">
+            <label asp-for="SeatType" class="form-label">Seat Type</label>
+            <select asp-for="SeatType" class="form-control">
+                <option value="">Select Seat Type</option>
+                
+                
+                @foreach (var seatType in ViewBag.SeatTypes as string[])
+                {
+                    <option value="@seatType">@seatType</option>
+                }
+            </select>
+            <span asp-validation-for="SeatType" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Generate Seats</button>
+    </form>
+</div>

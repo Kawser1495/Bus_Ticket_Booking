@@ -1,0 +1,21 @@
+﻿@model busticketbooking.Models.Booking
+
+<div class="container mt-5">
+    <h2>Make Payment</h2>
+    <p>Route: @Model.Schedule.Route.Source - @Model.Schedule.Route.Destination</p>
+    <p>Departure: @Model.Schedule.DepartureTime</p>
+    <p>Total Fare: @Model.TotalFare</p>
+
+    <form asp-action="MakePayment" method="post">
+        <input type="hidden" name="bookingId" value="@Model.BookingID" />
+        <div class="mb-3">
+            <label for="paymentMode" class="form-label">Payment Mode</label>
+            <select name="paymentMode" id="paymentMode" class="form-control">
+                <option value="Card">Card</option>
+                <option value="UPI">UPI</option>
+                <option value="Wallet">Wallet</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Pay Now</button>
+    </form>
+</div>

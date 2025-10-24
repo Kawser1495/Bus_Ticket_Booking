@@ -1,0 +1,34 @@
+﻿@model IEnumerable<busticketbooking.Models.Seat>
+
+<div class="container mt-5">
+    <h2>Manage Seats</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Seat Number</th>
+                <th>Seat Type</th>
+                <th>Is Booked</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var seat in Model)
+            {
+                <tr>
+                    <td>@seat.SeatNumber</td>
+                    <td>@seat.SeatType</td>
+                    <td>@seat.IsBooked</td>
+                    <td>
+                        <a asp-action="EditSeat" asp-route-id="@seat.SeatID" class="btn btn-warning">Edit</a>
+                        <form asp-action="DeleteSeat" asp-route-id="@seat.SeatID" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <form asp-action="DeleteAllSeats" asp-route-busId="@ViewBag.BusID" method="post">
+        <button type="submit" class="btn btn-danger">Reset Seat Layout</button>
+    </form>
+</div>

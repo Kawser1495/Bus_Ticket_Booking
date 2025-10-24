@@ -1,0 +1,86 @@
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@model busticketbooking.Models.BusSearchViewModel
+
+<div class="container mt-5">
+    <h2>Passenger Dashboard</h2>
+    <hr />
+
+    <!-- Manage Profile Section -->
+    <div class="manage-profile mt-4">
+        <h4>Manage Profile</h4>
+        <a asp-action="Profile" class="btn btn-secondary">Update Profile</a>
+    </div>
+
+    <!-- Search Buses Section -->
+    <div class="search-buses mt-4">
+        <h4>Search Buses</h4>
+        <form asp-action="SearchBuses" method="get">
+            <div class="row">
+                <!-- Route Dropdown -->
+                <div class="col-md-6 mb-3">
+                    <label asp-for="RouteID" class="form-label">Route</label>
+                    <select asp-for="RouteID" class="form-control">
+                        <option value="">Select Route</option>
+                        @foreach (var route in Model.Routes)
+                        {
+                            <option value="@route.RouteID">@route.Source - @route.Destination</option>
+                        }
+                    </select>
+                    <span asp-validation-for="RouteID" class="text-danger"></span>
+                </div>
+
+                <!-- Date Picker -->
+                <div class="col-md-6 mb-3">
+                    <label asp-for="Date" class="form-label">Date</label>
+                    <input asp-for="Date" type="date" class="form-control" />
+                    <span asp-validation-for="Date" class="text-danger"></span>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+
+    <!-- Search Results Section -->
+    @if (Model?.Buses != null && Model.Buses.Any())
+    {
+        <div class="search-results mt-5">
+            <h4>Available Buses</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Bus Number</th>
+                        <th>Bus Type</th>
+                        <th>Departure Time</th>
+                        <th>Arrival Time</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var bus in Model.Buses)
+                    {
+                        <tr>
+                            <td>@bus.Bus.BusNumber</td>
+                            <td>@bus.Bus.BusType</td>
+                            <td>@bus.DepartureTime.ToShortTimeString()</td>
+                            <td>@bus.ArrivalTime.ToShortTimeString()</td>
+                            <td>
+                                <a asp-action="SelectSeats" asp-route-scheduleId="@bus.ScheduleID" class="btn btn-primary btn-sm">Select Seats</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    }
+    else if (Model?.Buses != null)
+    {
+        <p class="text-danger mt-3">No buses found for the selected criteria.</p>
+    }
+
+    <!-- View Tickets Section -->
+    <div class="view-tickets mt-5">
+        <h4>View Tickets</h4>
+        <a asp-action="ViewTickets" asp-route-passengerId="@HttpContextAccessor.HttpContext.Session.GetInt32("PassengerID")" class="btn btn-info">View My Tickets</a>
+    </div>
+</div>

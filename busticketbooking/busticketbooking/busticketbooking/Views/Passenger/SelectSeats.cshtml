@@ -1,0 +1,63 @@
+﻿@inject IHttpContextAccessor HttpContextAccessor
+@model IEnumerable<busticketbooking.Models.Seat>
+
+<div class="container mt-5">
+    <h2>Select Seats</h2>
+    <form asp-action="BookTickets" method="post">
+        <input type="hidden" name="scheduleId" value="@ViewBag.ScheduleID" />
+        <input type="hidden" name="passengerId" value="@HttpContextAccessor.HttpContext.Session.GetInt32("PassengerID")" />
+
+        @* Group seats by their row (letter) *@
+        @foreach (var rowGroup in Model.GroupBy(seat => seat.SeatNumber.Substring(0, 1)).OrderBy(g => g.Key))
+        {
+            <div class="row mb-3">
+                <h5 class="col-12">Row @rowGroup.Key</h5>
+                @foreach (var seat in rowGroup.OrderBy(seat => int.Parse(seat.SeatNumber.Substring(1))))
+                {
+                    <div class="col-md-3 mb-3">
+                        @if (seat.IsBooked)
+                        {
+                            <div class="seat occupied">
+                                <label>@seat.SeatNumber (@seat.SeatType)</label>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="seat available">
+                                <input type="checkbox" name="selectedSeats" value="@seat.SeatNumber" id="seat-@seat.SeatID" />
+                                <label for="seat-@seat.SeatID">@seat.SeatNumber (@seat.SeatType)</label>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        }
+
+        <button type="submit" class="btn btn-primary mt-3">Book Selected Seats</button>
+    </form>
+</div>
+
+<style>
+    .seat {
+        padding: 10px;
+        text-align: center;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+        .seat.occupied {
+            background-color: #f8d7da;
+            color: #721c24;
+            cursor: not-allowed;
+        }
+
+        .seat.available {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .seat label {
+            display: block;
+            margin-top: 5px;
+        }
+</style>

@@ -1,0 +1,61 @@
+﻿@model busticketbooking.Models.BusSearchViewModel
+
+<div class="container mt-5">
+    <h2>Search Buses</h2>
+    <form asp-action="SearchBuses" method="get">
+        <div class="row">
+            <!-- Route Dropdown -->
+            <div class="col-md-6 mb-3">
+                <label asp-for="RouteID" class="form-label">Route</label>
+                <select asp-for="RouteID" class="form-control">
+                    <option value="">Select Route</option>
+                    @foreach (var route in Model.Routes)
+                    {
+                        <option value="@route.RouteID">@route.Source - @route.Destination</option>
+                    }
+                </select>
+                <span asp-validation-for="RouteID" class="text-danger"></span>
+            </div>
+
+            <!-- Date Picker -->
+            <div class="col-md-6 mb-3">
+                <label asp-for="Date" class="form-label">Date</label>
+                <input asp-for="Date" type="date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    @if (Model?.Buses != null && Model.Buses.Any())
+    {
+        <h3 class="mt-5">Available Buses</h3>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Bus Number</th>
+                    <th>Bus Type</th>
+                    <th>Departure Time</th>
+                    <th>Arrival Time</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var bus in Model.Buses)
+                {
+                    <tr>
+                        <td>@bus.Bus.BusNumber</td>
+                        <td>@bus.Bus.BusType</td>
+                        <td>@bus.DepartureTime.ToShortTimeString()</td>
+                        <td>@bus.ArrivalTime.ToShortTimeString()</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else if (Model?.Buses != null)
+    {
+        <p class="text-danger mt-3">No buses found for the selected criteria.</p>
+    }
+</div>
+

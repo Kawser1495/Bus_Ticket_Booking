@@ -1,0 +1,63 @@
+﻿@{
+    ViewData["Title"] = "Generate Reports";
+    var bookings = ViewBag.Bookings as IEnumerable<busticketbooking.Models.Booking>;
+    var payments = ViewBag.Payments as IEnumerable<busticketbooking.Models.Payment>;
+}
+
+<div class="container mt-5">
+    <h2>Reports</h2>
+    <hr />
+
+    <h3>Booking Summary</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Passenger Name</th>
+                <th>Bus</th>
+                <th>Schedule</th>
+                <th>Total Fare</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in bookings)
+            {
+                <tr>
+                    <td>@booking.BookingID</td>
+                    <td>@booking.Passenger.Name</td>
+                    <td>@booking.Schedule.Bus.BusNumber</td>
+                    <td>@booking.Schedule.DepartureTime.ToString("g")</td>
+                    <td>@booking.TotalFare</td>
+                    <td>@booking.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h3>Payment Summary</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Payment ID</th>
+                <th>Booking ID</th>
+                <th>Amount</th>
+                <th>Payment Mode</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var payment in payments)
+            {
+                <tr>
+                    <td>@payment.PaymentID</td>
+                    <td>@payment.BookingID</td>
+                    <td>@payment.Amount</td>
+                    <td>@payment.PaymentMode</td>
+                    <td>@payment.Status</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

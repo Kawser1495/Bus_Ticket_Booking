@@ -1,0 +1,33 @@
+﻿@model IEnumerable<busticketbooking.Models.Payment>
+
+<div class="container mt-5">
+    <h2>Monitor Transactions</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Payment ID</th>
+                <th>Booking ID</th>
+                <th>Passenger</th>
+                <th>Amount</th>
+                <th>Payment Mode</th>
+                <th>Status</th>
+                <th>Payment Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var payment in Model)
+            {
+                <tr>
+                    <td>@payment.PaymentID</td>
+                    <td>@payment.BookingID</td>
+                    <td>@payment.Booking.Passenger.Name</td>
+                    <td>@payment.Amount</td>
+                    <td>@payment.PaymentMode</td>
+                    <td>@payment.Status</td>
+                    <td>@payment.PaymentDate.ToShortDateString()</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

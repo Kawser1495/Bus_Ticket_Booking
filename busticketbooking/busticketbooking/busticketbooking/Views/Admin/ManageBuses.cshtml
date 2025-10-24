@@ -1,0 +1,38 @@
+﻿@model IEnumerable<busticketbooking.Models.Bus>
+
+<div class="container mt-5">
+    <h2>Manage Buses</h2>
+    <a asp-action="CreateBus" class="btn btn-primary mb-3">Add New Bus</a>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Bus ID</th>
+                <th>Bus Number</th>
+                <th>Bus Type</th>
+                <th>Total Seats</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var bus in Model)
+            {
+                <tr>
+                    <td>@bus.BusID</td>
+                    <td>@bus.BusNumber</td>
+                    <td>@bus.BusType</td>
+                    <td>@bus.TotalSeats</td>
+                    <td>
+                        <a asp-action="EditBus" asp-route-id="@bus.BusID" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="ManageSeats" asp-route-busId="@bus.BusID" class="btn btn-info btn-sm">Seats</a>
+                        <form asp-action="DeleteBus" asp-route-id="@bus.BusID" method="post" class="d-inline">
+                            <a asp-controller="Admin" asp-action="CreateSeat" asp-route-busId="@bus.BusID" class="btn btn-success">Create Seats</a>
+
+                            <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

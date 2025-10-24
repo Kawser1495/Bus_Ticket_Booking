@@ -1,0 +1,21 @@
+﻿@model busticketbooking.Models.SeatViewModel
+
+<div class="container mt-5">
+    <h2>Edit Seat</h2>
+    <form asp-action="EditSeat" method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <input type="hidden" asp-for="SeatID" />
+        <input type="hidden" asp-for="BusID" />
+        <div class="mb-3">
+            <label asp-for="SeatType" class="form-label"></label>
+            <input asp-for="SeatType" class="form-control" />
+            <span asp-validation-for="SeatType" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="IsBooked" class="form-label"></label>
+            <input asp-for="IsBooked" type="checkbox" class="form-check-input" />
+            <span asp-validation-for="IsBooked" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
