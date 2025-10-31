@@ -74,7 +74,9 @@ The project follows a **Model-View-Controller (MVC)** architecture:
 Challenge     --------------------       	Solution
 
 Data validation issues  ---------------	Used Data Annotations in models
+
 Handling multiple user roles	----------Implemented role-based authorization
+
 UI consistency	  ----------------------Applied Bootstrap-based responsive design
 
 ---
@@ -95,6 +97,7 @@ Real-time bus tracking (GPS API integration)
 
 Contributions are welcome!
 To contribute:
+
 1. Fork the repository
 2. Create a new branch (feature/your-feature)
 3. Commit your changes
@@ -109,7 +112,9 @@ This project is licensed under the MIT License – feel free to use and modify i
 
 💬 Contact
 Author: Md. Kawser Talukder
+
 📧 Email: ktl149516@gmail.com
+
 🌐 GitHub: [Kawser1495](https://kawser1495.github.io/Portfolio/)
  
 
